@@ -29,7 +29,7 @@ function playRound(playerSelection, computerSelection = getComputerChoice()) {
     let computerScore = 0;
 
     if (playerChoice == "rock" && computerChoice == "paper") {
-        showResults("Winner: Computer (Paper beats Rock)");
+        showResults("Computer");
         computerScore += 1;
     } else if (playerChoice == "rock" && computerChoice == "scissors") {
         showResults("Winner: Player (Rock beats Scissors)");
@@ -57,7 +57,7 @@ function playRound(playerSelection, computerSelection = getComputerChoice()) {
 function showResults(content) {
     const results = document.querySelector(".results")
     const message = document.createElement("h2")
-    message.innerText = content
+    message.innerText = `Winner: ${content}`
     results.appendChild(message)
 }
 
@@ -65,7 +65,6 @@ function showResults(content) {
 const buttons = document.querySelectorAll("button")
 buttons.forEach(button => {
     button.addEventListener('click', () => {
-
         //traer texto del boton
         let btnTxt = button.textContent
         playRound(btnTxt)
