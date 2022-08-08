@@ -1,3 +1,9 @@
+//Crear scores de jugadores
+let playerScore = 0;
+let computerScore = 0;
+
+showResults("") //Mostramos el inicio del marcador 0-0
+
 //CREAR FUNCION getComputerChoice()
 
 function getComputerChoice() {
@@ -24,41 +30,48 @@ function playRound(playerSelection, computerSelection = getComputerChoice()) {
     let playerChoice = playerSelection.toLowerCase();
     let computerChoice = computerSelection.toLowerCase();
     
-    //Crear scores de jugadores
-    let playerScore = 0;
-    let computerScore = 0;
 
     if (playerChoice == "rock" && computerChoice == "paper") {
-        showResults("Computer");
         computerScore += 1;
+        showResults("Computer's Point");
     } else if (playerChoice == "rock" && computerChoice == "scissors") {
-        showResults("Winner: Player (Rock beats Scissors)");
         playerScore += 1;
+        showResults("Player's Point");
     } else if (playerChoice == "paper" && computerChoice == "rock") {
-        showResults("Winner: Player (Paper beats Rock)");
         playerScore += 1;
+        showResults("Player's Point");
     } else if (playerChoice == "paper" && computerChoice == "scissors") {
-        showResults("Winner: Computer (Scissors beats Paper)");
         computerScore += 1;
+        showResults("Computer's Point");
     } else if (playerChoice == "scissors" && computerChoice == "rock") {
-        showResults("Winner: Computer (Rock beats Scissors)");
         computerScore += 1;
+        showResults("Computer's Point");
     } else if (playerChoice == "scissors" && computerChoice == "paper") {
-        showResults("Winner: Player (Scissors beats Paper)");
         playerScore += 1;
+        showResults("Player's Point");
     } else {
         showResults("Tied game")
     }
 
-    console.log(computerScore)
-    console.log(playerScore)
+    if (playerScore == 5) {
+        showResults("Congratulations!!! You Win!!!")
+    } else if (computerScore == 5) {
+        showResults("Sorry man!")
+    }
 }
 
 function showResults(content) {
     const results = document.querySelector(".results")
-    const message = document.createElement("h2")
-    message.innerText = `Winner: ${content}`
+    const message = document.querySelector("h2")
+    message.innerText = content
     results.appendChild(message)
+
+    const acumPlayer = document.querySelector("#playerScore")
+    const acumComputer = document.querySelector("#computerScore")
+    acumPlayer.innerText = `Player Score : ${playerScore}`
+    acumComputer.innerText = `Computer Score : ${computerScore}`
+    results.appendChild(acumPlayer)
+    results.appendChild(acumComputer)
 }
 
 
